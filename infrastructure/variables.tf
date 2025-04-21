@@ -34,3 +34,20 @@ variable "key_name" {
   description = "key_name for key pair authentication"
   type = string
 }
+
+variable "db_username" {
+  description = "Username for RDS"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Password for RDS"
+  type        = string
+  sensitive   = true
+}
+
+variable "db_name" {
+  description = "Initial database name"
+  type        = string
+  default     = "myappdb"
+}
