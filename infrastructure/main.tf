@@ -144,7 +144,7 @@ resource "aws_security_group" "db_sg" {
 resource "aws_db_instance" "postgres" {
   identifier              = "my-postgres-db"
   engine                  = "postgres"
-  engine_version          = "15.4"
+  engine_version          = "15.12"
   instance_class          = "db.t3.micro"
   allocated_storage       = 20
   storage_type            = "gp2"
