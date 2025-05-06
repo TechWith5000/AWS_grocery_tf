@@ -95,6 +95,8 @@ resource "aws_instance" "app_server" {
 
   associate_public_ip_address = true
 
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+
   tags = {
     Name = "MyAppInstance"
   }
@@ -155,15 +157,18 @@ resource "aws_db_instance" "postgres" {
   engine_version          = "14.12"
   instance_class          = "db.t3.micro"
   allocated_storage       = 20
+  max_allocated_storage   = 20
   storage_type            = "gp2"
   username                = var.db_username
   password                = var.db_password
   db_name                 = var.db_name
   skip_final_snapshot     = true
+  deletion_protection     = false
   publicly_accessible     = false
   vpc_security_group_ids  = [aws_security_group.db_sg.id]
   db_subnet_group_name    = aws_db_subnet_group.main.name
   multi_az                = false
+  backup_retention_period = 0  # Disables automated backups to avoid extra storage costs
 
   tags = {
     Name = "PostgresRDS"

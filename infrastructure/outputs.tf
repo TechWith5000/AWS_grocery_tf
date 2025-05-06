@@ -25,3 +25,7 @@ output "s3_bucket_arn" {
   description = "The ARN of the S3 bucket for user avatars"
   value       = aws_s3_bucket.avatars.arn
 }
+
+output "iam_role_name" {
+  value = aws_iam_role.ec2_s3_access_role.name
+}
